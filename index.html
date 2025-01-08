@@ -12,31 +12,6 @@
         <title>Kai's Portfolio</title>
     </head>
 
-<script>
-    
-
-    async function fetchTranslation(text, targetLang) {
-    const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLang}`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data.responseData.translatedText;
-}
-
-async function translatePage(targetLang) {
-    const elementsToTranslate = document.querySelectorAll('[data-translate]');
-    for (const element of elementsToTranslate) {
-        const originalText = element.dataset.translate;
-        const translatedText = await fetchTranslation(originalText, targetLang);
-        element.textContent = translatedText;
-    }
-}
-
-    document.getElementById('languageSelectNav').addEventListener('change', async (event) => {
-    const targetLang = event.target.value === 'id' ? 'id' : 'en';
-    await translatePage(targetLang);
-});
-
-</script>
 
     <body>
         <!--===== HEADER =====-->
@@ -53,12 +28,6 @@ async function translatePage(targetLang) {
                         <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
                         <li class="nav__item"><a href="#certificate" class="nav__link">Certificates</a></li>
                         <li class="nav__item"><a href="#work" class="nav__link">Project</a></li>
-                        <li class="nav__item nav__language">
-            <select id="languageSelectNav" class="nav__select" onchange="translatePage()">
-                <option value="en">English</option>
-                <option value="id">Bahasa Indonesia</option>
-            </select>
-        </li>
                     </ul>
                 </div>
 
